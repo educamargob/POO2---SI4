@@ -28,7 +28,35 @@ public class TelaProduto extends javax.swing.JFrame {
     }
     
     public void prencheCampos(){
+        edtCodigo.setEnabled(false);
         
+        if (prods.size() > 0) {
+            edtCodigo.setText(String.valueOf(prods.get(prodAtual).getId()));
+            edtDescr.setText(prods.get(prodAtual).getDescr());
+            edtPreco.setText(String.valueOf(prods.get(prodAtual).getPreco()));
+            edtImagem.setText(prods.get(prodAtual).getImagem());
+            
+            if (prodAtual == 0) {
+                btnAnterior.setEnabled(false);
+            }
+            else {
+                btnAnterior.setEnabled(true);
+            }
+
+            if (prodAtual == prods.size() - 1) {
+                btnProximo.setEnabled(false);
+            }
+            else {
+                btnProximo.setEnabled(true);
+            }
+        }
+        else {
+            edtCodigo.setText("Automático...");
+            btnAnterior.setEnabled(false);
+            btnProximo.setEnabled(false);
+            btnAdicionar.setEnabled(false);
+            atualizando = false;
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
