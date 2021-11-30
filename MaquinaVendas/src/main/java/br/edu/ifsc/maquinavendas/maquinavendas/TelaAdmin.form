@@ -91,6 +91,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Produtos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadProdutoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCadFormaPgto">
           <Properties>
@@ -99,6 +102,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Formas de Pagamento"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadFormaPgtoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

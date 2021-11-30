@@ -50,9 +50,19 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         btnCadProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCadProduto.setText("Produtos");
+        btnCadProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadProdutoActionPerformed(evt);
+            }
+        });
 
         btnCadFormaPgto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCadFormaPgto.setText("Formas de Pagamento");
+        btnCadFormaPgto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadFormaPgtoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -156,6 +166,16 @@ public class TelaAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btnRelVendaIndivActionPerformed
+
+    private void btnCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadProdutoActionPerformed
+       TelaProduto prod = new TelaProduto();
+       prod.setVisible(true);
+    }//GEN-LAST:event_btnCadProdutoActionPerformed
+
+    private void btnCadFormaPgtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadFormaPgtoActionPerformed
+       TelaFormasPgto form = new TelaFormasPgto();
+       form.setVisible(true);
+    }//GEN-LAST:event_btnCadFormaPgtoActionPerformed
 
     /**
      * @param args the command line arguments
