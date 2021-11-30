@@ -136,21 +136,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnteriorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnProximo">
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProximoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAdicionar">
           <Properties>
             <Property name="text" type="java.lang.String" value="+"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdicionarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSalvar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Salvar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

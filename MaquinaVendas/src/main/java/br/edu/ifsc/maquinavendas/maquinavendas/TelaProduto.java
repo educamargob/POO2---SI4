@@ -265,6 +265,7 @@ public class TelaProduto extends javax.swing.JFrame {
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         prodAtual++;
+        preencheCampos();
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed

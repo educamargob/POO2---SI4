@@ -22,6 +22,7 @@ public class TelaFormasPgto extends javax.swing.JFrame {
      */
     public TelaFormasPgto() {
         initComponents();
+        carregaFormaPgto();
     }
     
     public void carregaFormaPgto(){
@@ -55,7 +56,7 @@ public class TelaFormasPgto extends javax.swing.JFrame {
             edtCodigo.setText("Automático...");
             btnAnterior.setEnabled(false);
             btnProximo.setEnabled(false);
-            btnAdicionar.setEnabled(false);
+            btnAdicionar.setEnabled(true);
             atualizando = false;
         }
     }
@@ -96,12 +97,32 @@ public class TelaFormasPgto extends javax.swing.JFrame {
         });
 
         btnAnterior.setText("<<");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
 
         btnProximo.setText(">>");
+        btnProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProximoActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setText("+");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,6 +193,51 @@ public class TelaFormasPgto extends javax.swing.JFrame {
     private void edtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtCodigoActionPerformed
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        edtCodigo.setText("Automático...");
+        edtDescr.setText("");
+        atualizando = false;
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        String descr = edtDescr.getText();
+       
+        if (descr.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Você deve informar a Descrição!");
+            return;
+        }
+        
+        FormaPgto forma = new FormaPgto();
+        forma.setDescr(descr);
+        
+        try {
+            if (atualizando) {
+                forma.setId(Integer.parseInt(edtCodigo.getText()));
+                forma.atualizar();
+            }
+            else {
+                forma.adicionar();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        atualizando = true;
+        carregaFormaPgto();
+        
+        JOptionPane.showMessageDialog(this, "Forma de Pagamento salva com sucesso!");
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        formaAtual--;
+        preencheCampos();
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+        formaAtual++;
+        preencheCampos();
+    }//GEN-LAST:event_btnProximoActionPerformed
 
     /**
      * @param args the command line arguments
