@@ -277,7 +277,6 @@ public class TelaProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        String id = edtCodigo.getText();
         String descr = edtDescr.getText();
         String preco = edtPreco.getText();
         String img = edtImagem.getText();
@@ -296,7 +295,6 @@ public class TelaProduto extends javax.swing.JFrame {
         }
         
         Produto p = new Produto();
-        p.setId(Integer.parseInt(id));
         p.setDescr(descr);
         p.setPreco(Double.parseDouble(preco));
         p.setImagem(img.replace("\\", "\\\\"));
