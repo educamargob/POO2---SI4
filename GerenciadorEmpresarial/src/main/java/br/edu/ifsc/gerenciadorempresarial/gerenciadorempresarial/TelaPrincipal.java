@@ -5,11 +5,18 @@
  */
 package br.edu.ifsc.gerenciadorempresarial.gerenciadorempresarial;
 
+import Conexao.DBController;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author ecama
@@ -70,6 +77,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btnPessoaSetor.setText("Pessoas por setor");
+        btnPessoaSetor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPessoaSetorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -242,7 +254,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadPessoaActionPerformed
 
     private void btnCadPessoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadPessoa1ActionPerformed
-        // TODO add your handling code here:
+        TelaSolicitaCompra telaCompra = new TelaSolicitaCompra();
+        telaCompra.setVisible(true);
     }//GEN-LAST:event_btnCadPessoa1ActionPerformed
 
     private void btnCadPessoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadPessoa3ActionPerformed
@@ -253,6 +266,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaCadSetor telaSetor = new TelaCadSetor();
         telaSetor.setVisible(true);
     }//GEN-LAST:event_btnCadSetorActionPerformed
+
+    private void btnPessoaSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPessoaSetorActionPerformed
+        String arqRel = "E:\\Relatorios/";
+        arqRel += "pessoas_setor.jasper";
+        try {
+            DBController db = new DBController();
+            JasperReport rel = (JasperReport) 
+                    JRLoader.loadObjectFromFile(arqRel);
+            
+            db.conectar();
+            JasperPrint imp = JasperFillManager.fillReport(rel, 
+                                                        null, db.getConexao());
+            db.desconectar();
+            
+            JasperViewer v = new JasperViewer(imp, false);
+            v.setDefaultCloseOperation(JasperViewer.DISPOSE_ON_CLOSE);
+            v.setTitle("Relatorio de Pessoas por Setor");
+            
+            v.setVisible(true);        
+            
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnPessoaSetorActionPerformed
 
     /**
      * @param args the command line arguments
