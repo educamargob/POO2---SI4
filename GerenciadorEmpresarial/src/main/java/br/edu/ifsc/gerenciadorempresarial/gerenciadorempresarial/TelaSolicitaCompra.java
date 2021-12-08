@@ -494,21 +494,10 @@ public class TelaSolicitaCompra extends javax.swing.JFrame {
         }
         
 
-            Compra reg = new Compra(prod.getPreco(), func);
+            Compra reg = new Compra(prod.getPreco(), func, prod);
             try {
                 reg.salvar();
             } catch (Exception ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(this,
-                    ex.getMessage());
-                return;
-            }
-            Integer compraId = reg.getId();
-            System.out.println(compraId);
-            ItensCompra reg2 = new ItensCompra(prod, compraId);
-            try{
-                reg2.salvar();
-            }catch (Exception ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this,
                     ex.getMessage());

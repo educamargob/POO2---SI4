@@ -14,13 +14,13 @@ public class Compra {
     Integer id;
     double valor_total;
     Funcionario solicitante;
+    Produto produto;
 
-    public Compra(double valor_total, Funcionario solicitante) {
+    public Compra(double valor_total, Funcionario solicitante, Produto produto) {
         this.valor_total = valor_total;
         this.solicitante = solicitante;
+        this.produto = produto;
     }
-
-
     
     public Integer getId() {
         return id;
@@ -45,6 +45,15 @@ public class Compra {
     public void setSolicitante(Funcionario solicitante) {
         this.solicitante = solicitante;
     }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+    
     
     public void salvar() throws Exception {
         DBController db = new DBController();
@@ -58,12 +67,14 @@ public class Compra {
         dados.put("valor_total", String.valueOf(valor_total));
         dados.put("datahora", dtf.format(now));
         dados.put("solicitante", String.valueOf(solicitante.getId()));
+        dados.put("id_produto", String.valueOf(produto.getId()));
         
 
         db.conectar();
         db.insert("Compra", dados);
         db.desconectar();
     }
+    
     
     
 }

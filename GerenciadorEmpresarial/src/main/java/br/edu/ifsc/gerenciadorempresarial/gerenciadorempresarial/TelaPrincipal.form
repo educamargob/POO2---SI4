@@ -203,9 +203,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnCadPessoa1" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                      <Component id="btnCadSetor1" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                      <Component id="btnPessoaSetor1" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                      <Component id="btnSolicitarCompra" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                      <Component id="btnSolCompra" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                      <Component id="btnRelCompras" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
@@ -215,34 +215,40 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="btnCadPessoa1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSolicitarCompra" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="btnCadSetor1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSolCompra" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="btnPessoaSetor1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRelCompras" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnCadPessoa1">
+        <Component class="javax.swing.JButton" name="btnSolicitarCompra">
           <Properties>
             <Property name="text" type="java.lang.String" value="Realizar solicita&#xe7;&#xe3;o de Compra"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadPessoa1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSolicitarCompraActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCadSetor1">
+        <Component class="javax.swing.JButton" name="btnSolCompra">
           <Properties>
             <Property name="text" type="java.lang.String" value="Solicita&#xe7;&#xf5;es de compra"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSolCompraActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnPessoaSetor1">
+        <Component class="javax.swing.JButton" name="btnRelCompras">
           <Properties>
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de compras"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRelComprasActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -269,9 +275,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnCadPessoa3" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                      <Component id="btnCadSetor3" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                      <Component id="btnPessoaSetor3" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                      <Component id="btnComprasAprovadas" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                      <Component id="btnVerificaEntrega" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
@@ -280,35 +285,31 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  <Component id="btnComprasAprovadas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="btnCadPessoa3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="btnCadSetor3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="btnPessoaSetor3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                  <Component id="btnVerificaEntrega" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="98" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnCadPessoa3">
+        <Component class="javax.swing.JButton" name="btnComprasAprovadas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastro de Pessoas"/>
+            <Property name="text" type="java.lang.String" value="Compras aprovadas"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadPessoa3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnComprasAprovadasActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCadSetor3">
+        <Component class="javax.swing.JButton" name="btnVerificaEntrega">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastro de Setores"/>
+            <Property name="text" type="java.lang.String" value="Verifica entrega"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnPessoaSetor3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Pessoas por setor"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerificaEntregaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

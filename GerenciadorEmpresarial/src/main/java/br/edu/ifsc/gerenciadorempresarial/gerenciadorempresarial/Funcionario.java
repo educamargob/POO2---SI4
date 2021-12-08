@@ -20,7 +20,8 @@ public class Funcionario {
     private String senha;
     private Integer setor;
     private Integer funcao;
-
+    private Integer funcLogado;
+    
     public Integer getId() {
         return id;
     }
@@ -83,6 +84,14 @@ public class Funcionario {
 
     public void setFuncao(Integer funcao) {
         this.funcao = funcao;
+    }
+
+    public Integer getFuncLogado() {
+        return funcLogado;
+    }
+
+    public void setFuncLogado(Integer funcLogado) {
+        this.funcLogado = funcLogado;
     }
     
     
