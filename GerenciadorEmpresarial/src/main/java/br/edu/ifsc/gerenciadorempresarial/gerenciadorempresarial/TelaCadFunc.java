@@ -11,28 +11,61 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class TelaCadFunc extends javax.swing.JFrame {
+
     List<Funcionario> funcs;
+    List<Setor> setores;
+    List<Funcao> funcoes;
     int funcAtual = 0;
     boolean atualizando = true;
-    
+
     public TelaCadFunc() {
         initComponents();
         carregaFuncionarios();
     }
 
-    public void carregaFuncionarios(){
-        try{
+    public void carregaFuncionarios() {
+        try {
             funcs = Funcionario.buscaFuncionarios();
+            setores = Setor.buscaSetores();
+            funcoes = Funcao.buscaFuncoes();
             preencheCampos();
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar Funcionarios!");
             this.dispose();
         }
     }
-    
-    public void preencheCampos(){
+    public void insereSetor(){
+        String setorId = edtSetor.getText();
+            String nomeS = "";
+            if (setorId.length() > 0) {
+                Integer codSet = Integer.parseInt(setorId);
+
+                for (Setor s : setores) {
+                    if (s.getId() == codSet) {
+                        nomeS = s.getNome();
+                    }
+                }
+                lblSetor.setText(nomeS);
+            }
+    }
+    public void insereFuncao(){
+            String codF = edtFuncao.getText();
+            String nomeF = "";
+            if (codF.length() > 0) {
+                Integer codFun = Integer.parseInt(codF);
+
+                for (Funcao f : funcoes) {
+                    if (f.getId() == codFun) {
+                        nomeF = f.getNome();
+                    }
+                }
+                lblFuncao.setText(nomeF);
+            }
+    }
+
+    public void preencheCampos() {
         edtCodigo.setEnabled(false);
-        
+
         if (funcs.size() > 0) {
             edtCodigo.setText(String.valueOf(funcs.get(funcAtual).getId()));
             edtNome.setText(funcs.get(funcAtual).getNome());
@@ -41,53 +74,22 @@ public class TelaCadFunc extends javax.swing.JFrame {
             edtLogin.setText(funcs.get(funcAtual).getLogin());
             edtSenha.setText(funcs.get(funcAtual).getSenha());
             edtSetor.setText(funcs.get(funcAtual).getSetor().toString());
-            if(funcs.get(funcAtual).getSetor().toString().equals("1")){
-                lblSetor.setText("Recursos Humanos");
-            }else if(funcs.get(funcAtual).getSetor().toString().equals("2")){
-                lblSetor.setText("Compras");
-            }else if(funcs.get(funcAtual).getSetor().toString().equals("3")){
-                lblSetor.setText("Almoxarifado");
-            }else if(funcs.get(funcAtual).getSetor().toString().equals("4")){
-                lblSetor.setText("Diretoria");
-            }else{
-                lblSetor.setText(funcs.get(funcAtual).getSetor().toString());
-            }
             edtFuncao.setText(funcs.get(funcAtual).getFuncao().toString());
-            if(funcs.get(funcAtual).getFuncao().toString().equals("1")){
-                lblFuncao.setText("Recrutador");
-            }else if(funcs.get(funcAtual).getFuncao().toString().equals("2")){
-                lblFuncao.setText("Gerente de RH");
-            }else if(funcs.get(funcAtual).getFuncao().toString().equals("3")){
-                lblFuncao.setText("Comprador");
-            }else if(funcs.get(funcAtual).getFuncao().toString().equals("4")){
-                lblFuncao.setText("Gerente de compras");
-            }else if(funcs.get(funcAtual).getFuncao().toString().equals("5")){
-                lblFuncao.setText("Almoxarife");
-            }else if(funcs.get(funcAtual).getFuncao().toString().equals("6")){
-                lblFuncao.setText("Gerente do almoxarifado");
-            }else if(funcs.get(funcAtual).getFuncao().toString().equals("7")){
-                lblFuncao.setText("Diretor");
-            }else{
-                lblFuncao.setText(funcs.get(funcAtual).getFuncao().toString());
-            }
-            
-            
+            insereSetor();
+            insereFuncao();
             
             if (funcAtual == 0) {
                 btnAnterior.setEnabled(false);
-            }
-            else {
+            } else {
                 btnAnterior.setEnabled(true);
             }
 
             if (funcAtual == funcs.size() - 1) {
                 btnProximo.setEnabled(false);
-            }
-            else {
+            } else {
                 btnProximo.setEnabled(true);
             }
-        }
-        else {
+        } else {
             edtCodigo.setText("Automático...");
             btnAnterior.setEnabled(false);
             btnProximo.setEnabled(false);
@@ -211,8 +213,24 @@ public class TelaCadFunc extends javax.swing.JFrame {
         jLabel8.setText("FunçãoID");
 
         edtSetor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edtSetor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtSetorKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                edtSetorKeyTyped(evt);
+            }
+        });
 
         edtFuncao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edtFuncao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtFuncaoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                edtFuncaoKeyTyped(evt);
+            }
+        });
 
         try {
             edtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -378,38 +396,37 @@ public class TelaCadFunc extends javax.swing.JFrame {
         String setor = edtSetor.getText();
         String funcao = edtFuncao.getText();
 
-
-        if(nome.length() == 0){
-            JOptionPane.showMessageDialog(this,"Você deve informar o nome");
+        if (nome.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Você deve informar o nome");
             return;
         }
-        if(cpf.length() == 0){
-            JOptionPane.showMessageDialog(this,"Você deve informar o CPF");
+        if (cpf.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Você deve informar o CPF");
             return;
         }
-        if(nasc.length() == 0){
-            JOptionPane.showMessageDialog(this,"Você deve informar a data de nascimento");
+        if (nasc.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Você deve informar a data de nascimento");
             return;
         }
-        if(login.length() == 0){
-            JOptionPane.showMessageDialog(this,"Você deve informar o login do usuario");
+        if (login.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Você deve informar o login do usuario");
             return;
         }
-        if(senha.length() == 0){
-            JOptionPane.showMessageDialog(this,"Você deve informar a senhga do usuario");
+        if (senha.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Você deve informar a senhga do usuario");
             return;
         }
-        if(setor.length() == 0){
-            JOptionPane.showMessageDialog(this,"Você deve informar o setor");
+        if (setor.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Você deve informar o setor");
             return;
         }
-        if(funcao.length() == 0){
-            JOptionPane.showMessageDialog(this,"Você deve informar a função");
+        if (funcao.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Você deve informar a função");
             return;
         }
 
         Funcionario f = new Funcionario();
-        if(id.equals("Automático...")){
+        if (id.equals("Automático...")) {
             f.setNome(nome);
             f.setCpf(cpf);
             f.setDatanasc(nasc);
@@ -417,7 +434,7 @@ public class TelaCadFunc extends javax.swing.JFrame {
             f.setSenha(senha);
             f.setSetor(Integer.parseInt(setor));
             f.setFuncao(Integer.parseInt(funcao));
-        }else{
+        } else {
             f.setId(Integer.parseInt(id));
             f.setNome(nome);
             f.setCpf(cpf);
@@ -425,21 +442,21 @@ public class TelaCadFunc extends javax.swing.JFrame {
             f.setLogin(login);
             f.setSenha(senha);
             f.setSetor(Integer.parseInt(setor));
-            f.setFuncao(Integer.parseInt(funcao)); 
+            f.setFuncao(Integer.parseInt(funcao));
         }
-            try{
-                if(atualizando){
-                    f.atualizar();
-                }else{
-                    f.adicionar();
-                }
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, e.getMessage());
-                return;
+        try {
+            if (atualizando) {
+                f.atualizar();
+            } else {
+                f.adicionar();
             }
-            atualizando = true;
-            carregaFuncionarios();
-            JOptionPane.showMessageDialog(this, "Funcionario salvo com Sucesso");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            return;
+        }
+        atualizando = true;
+        carregaFuncionarios();
+        JOptionPane.showMessageDialog(this, "Funcionario salvo com Sucesso");
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -450,6 +467,28 @@ public class TelaCadFunc extends javax.swing.JFrame {
     private void edtNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNascActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtNascActionPerformed
+
+    private void edtSetorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtSetorKeyTyped
+        char key = evt.getKeyChar();
+        if (key < 48 || key > 57) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_edtSetorKeyTyped
+
+    private void edtSetorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtSetorKeyReleased
+            insereSetor();
+    }//GEN-LAST:event_edtSetorKeyReleased
+
+    private void edtFuncaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtFuncaoKeyReleased
+            insereFuncao();
+    }//GEN-LAST:event_edtFuncaoKeyReleased
+
+    private void edtFuncaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtFuncaoKeyTyped
+        char key = evt.getKeyChar();
+        if (key < 48 || key > 57) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_edtFuncaoKeyTyped
 
     /**
      * @param args the command line arguments

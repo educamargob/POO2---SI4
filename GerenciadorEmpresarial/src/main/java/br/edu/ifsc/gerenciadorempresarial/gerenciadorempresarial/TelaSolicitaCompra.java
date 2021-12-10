@@ -410,7 +410,7 @@ public class TelaSolicitaCompra extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,7 +505,7 @@ public class TelaSolicitaCompra extends javax.swing.JFrame {
             }
 
             JOptionPane.showMessageDialog(this,
-                "Venda confirmada! Retire seu produto.");
+                "Solicitação confirmada! Aguarde aprovação do compras.");
         
     }//GEN-LAST:event_btnComprarActionPerformed
 
